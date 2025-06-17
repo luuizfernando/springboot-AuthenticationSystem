@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
+import com.projects.authenticationsystem.entities.enums.UserRole;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,12 +17,14 @@ import jakarta.persistence.Table;
 @Table(name = "tb_users")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String username;
 	private String email;
 	private String password;
+	private UserRole role;
 	
 	@Column(nullable = false, updatable = false)
     private Instant createdAt = Instant.now();
@@ -29,11 +33,12 @@ public class User implements Serializable {
 	
 	public User() {}
 
-	public User(Long id, String username, String email, String password) {
+	public User(Long id, String username, String email, String password, UserRole role) {
 	    this.id = id;
 	    this.username = username;
 	    this.email = email;
 	    this.password = password;
+	    this.role = role;
 	    this.createdAt = Instant.now();
 	}
 
@@ -74,12 +79,16 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	public Instant getCreatedAt() {
-		return createdAt;
+	public UserRole getRole() {
+		return role;
 	}
 
-	public void setCreatedAt(Instant createdAt) {
-		this.createdAt = createdAt;
+	public void setRole(UserRole role) {
+		this.role = role;
+	}
+
+	public Instant getCreatedAt() {
+		return createdAt;
 	}
 
 	public Instant getUpdatedAt() {
