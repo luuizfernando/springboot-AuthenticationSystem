@@ -1,4 +1,4 @@
-package com.projects.authenticationsystem.services.exceptions;
+package com.projects.authenticationsystem.resources.exceptions;
 
 
 import java.io.Serializable;

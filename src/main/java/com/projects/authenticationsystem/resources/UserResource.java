@@ -15,6 +15,8 @@ import com.projects.authenticationsystem.entities.User;
 import com.projects.authenticationsystem.services.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 @RestController
@@ -41,5 +43,11 @@ public class UserResource {
 		obj = service.insertUser(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).body(obj);
+	}
+
+	@PutMapping(value="/{id}")
+	public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User obj) {
+		obj = service.updateUser(id, obj);
+		return ResponseEntity.ok().body(obj);
 	}
 }

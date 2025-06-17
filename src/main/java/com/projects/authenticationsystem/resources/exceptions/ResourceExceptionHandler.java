@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.projects.authenticationsystem.services.exceptions.ResourceNotFoundException;
-import com.projects.authenticationsystem.services.exceptions.StandardError;
 
 import jakarta.servlet.http.HttpServletRequest;
 
