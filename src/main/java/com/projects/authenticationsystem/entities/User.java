@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,28 +12,38 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_user")
+@Table(name = "tb_users")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String username;
 	private String email;
 	private String password;
-	private Instant createdAt;
+	
+	@Column(nullable = false, updatable = false)
+    private Instant createdAt = Instant.now();
+	
 	private Instant updatedAt;
 	
 	public User() {}
 
+	public User(Long id, String username, String email, String password) {
+	    this.id = id;
+	    this.username = username;
+	    this.email = email;
+	    this.password = password;
+	    this.createdAt = Instant.now();
+	}
+
 	public User(Long id, String username, String email, String password, Instant createdAt, Instant updatedAt) {
-		this.id = id;
-		this.username = username;
-		this.email = email;
-		this.password = password;
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
+	    this.id = id;
+	    this.username = username;
+	    this.email = email;
+	    this.password = password;
+	    this.createdAt = createdAt;
+	    this.updatedAt = updatedAt;
 	}
 
 	public Long getId() {
@@ -96,5 +107,4 @@ public class User implements Serializable {
 		User other = (User) obj;
 		return Objects.equals(id, other.id);
 	}
-	
 }
