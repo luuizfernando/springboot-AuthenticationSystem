@@ -1,8 +1,13 @@
 package com.projects.authenticationsystem.entities;
 
-import java.io.Serializable;
 import java.time.Instant;
+import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.projects.authenticationsystem.entities.enums.UserRole;
 
@@ -15,8 +20,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_users")
-public class User implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class User implements UserDetails {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -115,5 +119,11 @@ public class User implements Serializable {
 			return false;
 		User other = (User) obj;
 		return Objects.equals(id, other.id);
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		if (this.role == UserRole.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
+		else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
 	}
 }
