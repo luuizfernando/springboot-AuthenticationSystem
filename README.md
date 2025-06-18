@@ -2,18 +2,6 @@
 
 A robust Spring Boot application implementing user registration, authentication, and role-based authorization using JWT tokens and Spring Security.
 
-## 📋 Table of Contents
-
-- [Overview](#overview)
-- [Features](#features)
-- [Technologies](#technologies)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [API Endpoints](#api-endpoints)
-- [Testing](#testing)
-- [Contributing](#contributing)
-
 ## 🎯 Overview
 
 This project provides a complete authentication and authorization system with user registration, secure login, and role-based access control. It demonstrates best practices for securing Spring Boot applications using JWT tokens and BCrypt password encryption.
