@@ -46,13 +46,21 @@ public class User implements UserDetails {
 	    this.createdAt = Instant.now();
 	}
 
-	public User(Long id, String username, String email, String password, Instant createdAt, Instant updatedAt) {
+	public User(Long id, String username, String email, String password, UserRole role, Instant createdAt, Instant updatedAt) {
 	    this.id = id;
 	    this.username = username;
 	    this.email = email;
 	    this.password = password;
+		this.role = role;
 	    this.createdAt = createdAt;
 	    this.updatedAt = updatedAt;
+	}
+
+	public User(String username, String email, String password, UserRole role) {
+		this.username = username;
+		this.email = email;
+		this.password = password;
+	    this.role = role;
 	}
 
 	public Long getId() {
